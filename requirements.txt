@@ -1,0 +1,5 @@
+Flask
+bootstrap-py
+gensim
+sklearn
+tensorflow
