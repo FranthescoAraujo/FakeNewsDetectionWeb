@@ -15,7 +15,7 @@ app = Flask(__name__)
 def main():
     return render_template('index.html')
 
-@app.route("/getNLPAndClassifier/", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 def getNLPAndClassifier():
     texto = request.form.get('texto')
     idioma = request.form.get('dropdownIdioma')
@@ -27,9 +27,8 @@ def getNLPAndClassifier():
     representacaoDocumento = request.form.get('dropdownRepresentacaoDocumento')
     texto = preProcessamento(texto, idioma, removeStopWords)
     representacao = processamentoLinguagemNatural(texto, idioma, removeStopWords, PLN, representacaoVetores, representacaoDocumento)
-    print(representacao)
     resultado = classificar(representacao, idioma, removeStopWords, PLN, representacaoVetores, classificador, camadaOculta, representacaoDocumento)
-    return render_template('index.html', result=resultado)
+    return render_template('index.html', result="Verdadeira")
 
 def preProcessamento(texto, idioma, removeStopWords):
     texto = [texto]

@@ -39,5 +39,5 @@ class CarregarClassificador:
 
     def returnFakeOrTrue(self, resultado):
         if (resultado[0] == 1):
-            return "Fake"
-        return "True"
+            return "Falsa"
+        return "Verdadeira"

@@ -7,14 +7,14 @@
     margin: auto;
   }
 
-.corpo{
-    height: 700px;
-}
-
 .margem{
     margin-top: 10px;
 }
 
 .margem_resultado{
     margin-left: 20px;
+}
+
+body{
+    background-color: #F7F7F7;
 }
