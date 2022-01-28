@@ -1,4 +1,5 @@
 Flask
+Flask-Toastr
 bootstrap-py
 gensim
 sklearn

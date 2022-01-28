@@ -38,6 +38,7 @@ class CarregarClassificador:
         return self.returnFakeOrTrue(classificador.predict(self.representacao))
 
     def returnFakeOrTrue(self, resultado):
-        if (resultado[0] == 1):
+        print(resultado)
+        if (resultado[0] >= 0.5):
             return "Falsa"
         return "Verdadeira"
