@@ -1,4 +1,5 @@
 import numpy
+import json
 from gensim.models import Word2Vec, Doc2Vec
 from keras.preprocessing import sequence
 
@@ -54,20 +55,23 @@ class CarregaPLN:
             if word in model:
                 documentRepresentation[index] = model[word]
                 index += 1
-        return documentRepresentation
+        return numpy.array([documentRepresentation])
 
     def word2vecMatrixTransposed(self):
         documentRepresentation = self.word2vecMatrix()
-        return numpy.transpose(documentRepresentation, (1,0))
+        return numpy.transpose(documentRepresentation, (0,2,1))
 
     def tensorflowEmbedding(self):
         self.createPathWithMatrixSize()
+        f = open(self.path + "model.json", "r")
+        model = json.load(f)
+        f.close()
         i = 0
         document = self.texto.split()
         while i < len(document):
-            if document[i] in self.word2id:
-                document[i] = self.word2id[document[i]]
+            if document[i] in model:
+                document[i] = model[document[i]]
                 i += 1
                 continue
             del document[i]
-        return sequence.pad_sequences(document, maxlen=self.representacaoDocumento, padding='post')
+        return sequence.pad_sequences([document], maxlen=int(self.representacaoDocumento), padding='post')

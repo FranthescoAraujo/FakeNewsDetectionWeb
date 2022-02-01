@@ -28,11 +28,10 @@ def getNLPAndClassifier():
     classificador = request.form.get('dropdownClassificador')
     camadaOculta = request.form.get('dropdownCamadaOculta')
     representacaoDocumento = request.form.get('dropdownRepresentacaoDocumento')
-    if validarEntradas(texto, idioma, removeStopWords, PLN, representacaoVetores, classificador, camadaOculta, representacaoDocumento):
+    if validarEntradas(texto, PLN, classificador, camadaOculta, representacaoDocumento):
         return render_template('index.html')
     texto = preProcessamento(texto, idioma, removeStopWords)
     representacao = processamentoLinguagemNatural(texto, idioma, removeStopWords, PLN, representacaoVetores, representacaoDocumento)
-    print(representacao)
     resultado = classificar(representacao, idioma, removeStopWords, PLN, representacaoVetores, classificador, camadaOculta, representacaoDocumento)
     return render_template('index.html', text = "Resultado da classificação: ", result = resultado)
 
@@ -79,7 +78,7 @@ def classificar(representacao, idioma, removeStopWords, PLN, representacaoVetore
         resultado = load.lstmWithEmbedding()
     return resultado
 
-def validarEntradas(texto, idioma, removeStopWords, PLN, representacaoVetores, classificador, camadaOculta, representacaoDocumento):
+def validarEntradas(texto, PLN, classificador, camadaOculta, representacaoDocumento):
     if texto == "":
         flash("Digite o seu texto", 'warning')
         return True
@@ -89,7 +88,7 @@ def validarEntradas(texto, idioma, removeStopWords, PLN, representacaoVetores, c
     if (PLN == "Word2vec - Skipgram - Matrix" or PLN == "Word2vec - CBOW - Matrix" or PLN == "Word2vec - Skipgram - Matrix Transposed" or PLN == "Word2vec - CBOW - Matrix Transposed" or PLN == "Tensorflow Embedding" or PLN == "RNA") and camadaOculta == "null":
         flash("Para " + PLN + ", digite uma quantidade de neurônios na camada oculta", 'warning')
         return True
-    if (PLN == "Word2vec - Skipgram - Matrix" or PLN == "Word2vec - CBOW - Matrix" or PLN == "Word2vec - Skipgram - Matrix Transposed" or PLN == "Word2vec - CBOW - Matrix Transposed" or PLN == "Tensorflow Embedding" or PLN == "RNA") and classificador != "LSTM":
+    if (PLN == "Word2vec - Skipgram - Matrix" or PLN == "Word2vec - CBOW - Matrix" or PLN == "Word2vec - Skipgram - Matrix Transposed" or PLN == "Word2vec - CBOW - Matrix Transposed") and classificador != "LSTM":
         flash("Para " + PLN + ", o classificador deve ser o " + classificador, 'warning')
         return True
     if (PLN == "Tensorflow Embedding" and classificador != "LSTM With Embedding"):
