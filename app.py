@@ -41,7 +41,7 @@ def preProcessamento(texto, idioma, removeStopWords):
     texto = PreProcessing.removeSpecialCharacters(texto)
     texto = PreProcessing.removeNumerals(texto)
     texto = PreProcessing.toLowerCase(texto)
-    if (bool(removeStopWords)):
+    if (removeStopWords == "True"):
         texto = PreProcessing.removeStopWords(texto, idioma)
     return texto
 
@@ -53,9 +53,9 @@ def processamentoLinguagemNatural(texto, idioma, removeStopWords, PLN, represent
     if (PLN == "Doc2vec - Concatenated"):
         representacao = load.doc2vecConcatenated()
     if (PLN == "Word2vec - Skipgram - Sum" or PLN == "Word2vec - CBOW - Sum"):
-        representacao = load.word2vec(0)
-    if (PLN == "Word2vec - Skipgram - Average" or PLN == "Word2vec - CBOW - Average"):
         representacao = load.word2vec(1)
+    if (PLN == "Word2vec - Skipgram - Average" or PLN == "Word2vec - CBOW - Average"):
+        representacao = load.word2vec(0)
     if (PLN == "Word2vec - Skipgram - Matrix" or PLN == "Word2vec - CBOW - Matrix"):
         representacao = load.word2vecMatrix()
     if (PLN == "Word2vec - Skipgram - Matrix Transposed" or PLN == "Word2vec - CBOW - Matrix Transposed"):
