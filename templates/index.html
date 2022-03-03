@@ -46,7 +46,7 @@
                                     <label for="inputState"><b>Idioma da notícia:</b></label>
                                     <select name="dropdownIdioma" class="form-select form-select-sm" aria-label=".form-select-sm">
                                         <option selected value="Português">Português</option>
-                                        <option value="Inglês">Inglês</option>
+                                        <!-- <option value="Inglês">Inglês</option> -->
                                     </select>
                                 </div>
                                 <div class="form-group margem">
@@ -59,22 +59,22 @@
                     <div class="tab-pane fade" id="avancado" role="tabpanel" aria-labelledby="avancado-tab">
                         <div class="row corpo">
                             <div class="col-12">
-                                <div class="form-group margem">
+                                <!-- <div class="form-group margem">
                                     <label for="inputState"><b>Remover Stop Words:</b></label>
                                     <select name="dropdownRemoveStopWords" class="form-select form-select-sm" aria-label=".form-select-sm">
                                         <option selected value="True">Remover</option>
                                         <option value="False">Não remover</option>
                                     </select>
-                                </div>
-                                <div class="form-group margem">
+                                </div> -->
+                                <!-- <div class="form-group margem">
                                     <label for="inputState"><b>Processamento de Linguagem Natural:</b></label>
                                     <select name="dropdownPLN" class="form-select form-select-sm" aria-label=".form-select-sm">
                                         <option value="Doc2vec - PV-DM">Doc2vec - PV-DM</option>
                                         <option value="Doc2vec - PV-DBOW">Doc2vec - PV-DBOW</option>
                                         <option value="Doc2vec - Concatenated">Doc2vec - PV-DM e PV-DBOW concatenados</option>
-                                        <option value="Word2vec - Skipgram - Sum">Word2vec - Skipgram - Soma das representações das palavras</option>
+                                        <option selected value="Word2vec - Skipgram - Sum">Word2vec - Skipgram - Soma das representações das palavras</option>
                                         <option value="Word2vec - Skipgram - Average">Word2vec - Skipgram - Média das representações das palavras</option>
-                                        <option selected value="Word2vec - CBOW - Sum">Word2vec - CBOW - Soma das representações das palavras</option>
+                                        <option value="Word2vec - CBOW - Sum">Word2vec - CBOW - Soma das representações das palavras</option>
                                         <option value="Word2vec - CBOW - Average">Word2vec - CBOW - Média das representações das palavras</option>
                                         <option value="Word2vec - Skipgram - Matrix">Word2vec - Skipgram - Matriz de representação</option>
                                         <option value="Word2vec - CBOW - Matrix">Word2vec - CBOW - Matriz de representação</option>
@@ -82,16 +82,16 @@
                                         <option value="Word2vec - CBOW - Matrix Transposed">Word2vec - CBOW - Matriz de representação Transposta</option>
                                         <option value="Tensorflow Embedding">Representação do Tensorflow</option>
                                     </select>
-                                </div>
-                                <div class="form-group margem">
+                                </div> -->
+                                <!-- <div class="form-group margem">
                                     <label for="inputState"><b>Tamanho da representação dos vetores:</b></label>
                                     <select name="dropdownRepresentacaoVetores" class="form-select form-select-sm" aria-label=".form-select-sm">
-                                        <option value="100">100 dimensões</option>
+                                        <option selected value="100">100 dimensões</option>
                                         <option value="200">200 dimensões</option>
-                                        <option selected value="300">300 dimensões</option>
+                                        <option value="300">300 dimensões</option>
                                     </select>
-                                </div>
-                                <div class="form-group margem">
+                                </div> -->
+                                <!-- <div class="form-group margem">
                                     <label for="inputState"><b>Quantidade palavras para representar o documento:</b></label>
                                     <select name="dropdownRepresentacaoDocumento" class="form-select form-select-sm" aria-label=".form-select-sm">
                                         <option selected value="null"> - </option>
@@ -99,7 +99,7 @@
                                         <option value="50">50 palavras</option>
                                         <option value="100">100 palavras</option>
                                     </select>
-                                </div>
+                                </div> -->
                                 <div class="form-group margem">
                                     <label for="inputState"><b>Classificador:</b></label>
                                     <select name="dropdownClassificador" class="form-select form-select-sm" aria-label=".form-select-sm">
@@ -110,7 +110,7 @@
                                         <option value="LSTM With Embedding">LSTM com Camada de Embedding</option>
                                     </select>
                                 </div>
-                                <div class="form-group margem">
+                                <!-- <div class="form-group margem">
                                     <label for="inputState"><b>Quantidade de neurônios na camada oculta:</b></label>
                                     <select name="dropdownCamadaOculta" class="form-select form-select-sm" aria-label=".form-select-sm">
                                         <option value='null'> - </option>
@@ -118,7 +118,7 @@
                                         <option value="50">50 neurônios</option>
                                         <option value="100">100 neurônios</option>
                                     </select>
-                                </div>
+                                </div> -->
                                 <div class="form-group margem">
                                     <button type="submit" class="btn btn-success">Detectar</button>
                                     <label class="margem_resultado">{{ text }}<b>{{ result }}</b></label>
@@ -127,7 +127,7 @@
                         </div>
                     </div>
                 </form>
-              </div>
+            </div>
         </div>
     </body>
 </html>
