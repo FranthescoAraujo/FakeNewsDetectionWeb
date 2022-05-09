@@ -29,6 +29,9 @@ def getNLPAndClassifier():
     classificador = request.form.get('dropdownClassificador')
     # camadaOculta = request.form.get('dropdownCamadaOculta')
     removeStopWords, PLN, representacaoVetores, camadaOculta, representacaoDocumento = retornaMelhoresParametrosParaClassificador(idioma, classificador)
+    if (removeStopWords == "null"):
+        flash("Utilize outro classificador", 'warning')
+        return render_template('index.html')
     if validarEntradas(texto, PLN, classificador, camadaOculta, representacaoDocumento):
         return render_template('index.html')
     texto = preProcessamento(texto, idioma, removeStopWords)
@@ -102,27 +105,29 @@ def validarEntradas(texto, PLN, classificador, camadaOculta, representacaoDocume
 
 def retornaMelhoresParametrosParaClassificador(idioma, classificador):
     if (idioma == "Português"):
-        if (classificador == "SVM"):
-            return "True", "Word2vec - Skipgram - Sum", "100", "null", "null"
-        if (classificador == "Naive Bayes"):
-            return "True", "Word2vec - Skipgram - Sum", "200", "null", "null"
-        if (classificador == "RNA"):
-            return "True", "Word2vec - CBOW - Sum", "300", "10", "null"
-        if (classificador == "LSTM"):
-            return "True", "Word2vec - Skipgram - Matrix", "30", "50", "500"
+        # if (classificador == "SVM"):
+        #     return "True", "Word2vec - Skipgram - Sum", "100", "null", "null"
+        # if (classificador == "Naive Bayes"):
+        #     return "True", "Word2vec - Skipgram - Sum", "200", "null", "null"
+        # if (classificador == "RNA"):
+        #     return "True", "Word2vec - CBOW - Sum", "300", "10", "null"
+        # if (classificador == "LSTM"):
+        #     return "True", "Word2vec - Skipgram - Matrix", "100", "50", "150"
         if (classificador == "LSTM With Embedding"):
-            return "True", "Tensorflow Embedding", "30", "50", "400"
+            return "True", "Tensorflow Embedding", "300", "100", "100"
+        return "null", "null", "null", "null", "null"
 
     # if (classificador == "SVM"):
     #     return "True", "Word2vec - Skipgram - Sum", "100", "null", "null"
     # if (classificador == "Naive Bayes"):
     #     return "True", "Word2vec - Skipgram - Sum", "200", "null", "null"
-    # if (classificador == "RNA"):
-    #     return "True", "Word2vec - CBOW - Sum", "300", "10", "null"
-    # if (classificador == "LSTM"):
-    #     return "True", "Word2vec - Skipgram - Matrix", "30", "50", "500"
-    # if (classificador == "LSTM With Embedding"):
-    #     return "True", "Tensorflow Embedding", "30", "50", "400"
+    if (classificador == "RNA"):
+        return "True", "Word2vec - Skipgram - Average", "300", "50", "null"
+    if (classificador == "LSTM"):
+        return "True", "Word2vec - Skipgram - Matrix", "30", "100", "300"
+    if (classificador == "LSTM With Embedding"):
+        return "True", "Tensorflow Embedding", "40", "100", "400"
+    return "null", "null", "null", "null", "null"
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0',port=80)
