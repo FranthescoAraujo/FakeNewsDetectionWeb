@@ -47,6 +47,7 @@ def preProcessamento(texto, idioma, removeStopWords):
     texto = PreProcessing.toLowerCase(texto)
     if (removeStopWords == "True"):
         texto = PreProcessing.removeStopWords(texto, idioma)
+    # texto = PreProcessing.convertWordsToStemming(texto, idioma)
     return texto
 
 def processamentoLinguagemNatural(texto, idioma, removeStopWords, PLN, representacaoVetores, representacaoDocumento):
@@ -105,20 +106,20 @@ def validarEntradas(texto, PLN, classificador, camadaOculta, representacaoDocume
 
 def retornaMelhoresParametrosParaClassificador(idioma, classificador):
     if (idioma == "Português"):
-        # if (classificador == "SVM"):
-        #     return "True", "Word2vec - Skipgram - Sum", "100", "null", "null"
+        if (classificador == "SVM"):
+            return "False", "Word2vec - Skipgram - Average", "200", "null", "null"
         # if (classificador == "Naive Bayes"):
         #     return "True", "Word2vec - Skipgram - Sum", "200", "null", "null"
-        # if (classificador == "RNA"):
-        #     return "True", "Word2vec - CBOW - Sum", "300", "10", "null"
-        # if (classificador == "LSTM"):
-        #     return "True", "Word2vec - Skipgram - Matrix", "100", "50", "150"
+        if (classificador == "RNA"):
+            return "False", "Word2vec - Skipgram - Average", "300", "50", "null"
+        if (classificador == "LSTM"):
+            return "True", "Word2vec - Skipgram - Matrix", "200", "50", "100"
         if (classificador == "LSTM With Embedding"):
-            return "True", "Tensorflow Embedding", "300", "100", "100"
+            return "True", "Tensorflow Embedding", "100", "50", "100"
         return "null", "null", "null", "null", "null"
 
-    # if (classificador == "SVM"):
-    #     return "True", "Word2vec - Skipgram - Sum", "100", "null", "null"
+    if (classificador == "SVM"):
+        return "True", "Word2vec - Skipgram - Average", "300", "null", "null"
     # if (classificador == "Naive Bayes"):
     #     return "True", "Word2vec - Skipgram - Sum", "200", "null", "null"
     if (classificador == "RNA"):
